@@ -6,7 +6,7 @@ extern crate serde;
 use serde::de::Error;
 
 #[derive(Clone, PartialEq)]
-enum TypeCode {
+pub enum TypeCode {
     Hero,
     Ally,
     Event,
@@ -48,7 +48,7 @@ impl<'de> serde::Deserialize<'de> for TypeCode {
 }
 
 #[derive(Clone, PartialEq)]
-enum TypeName {
+pub enum TypeName {
     Hero,
     Ally,
     Event,
@@ -90,7 +90,7 @@ impl<'de> serde::Deserialize<'de> for TypeName {
 }
 
 #[derive(Clone, PartialEq)]
-enum SphereCode {
+pub enum SphereCode {
     Leadership,
     Tactics,
     Spirit,
@@ -135,7 +135,7 @@ impl<'de> serde::Deserialize<'de> for SphereCode {
 }
 
 #[derive(Clone, PartialEq)]
-enum SphereName {
+pub enum SphereName {
     Leadership,
     Tactics,
     Spirit,
@@ -181,51 +181,51 @@ impl<'de> serde::Deserialize<'de> for SphereName {
 
 #[derive(Clone, Deserialize)]
 #[allow(dead_code)]
-struct Card {
-    pack_code: String,
-    pack_name: String,
-    type_code: TypeCode,
-    type_name: TypeName,
-    sphere_code: SphereCode,
-    sphere_name: SphereName,
-    position: usize,
-    code: String,
-    name: String,
-    traits: Option<String>,
-    text: String,
-    flavor: Option<String>,
-    is_unique: bool,
-    threat: Option<usize>,
-    willpower: Option<usize>,
-    attack: Option<usize>,
-    defense: Option<usize>,
-    health: Option<usize>,
-    quantity: usize,
-    deck_limit: usize,
-    illustrator: String,
-    octgnid: String,
-    has_errata: bool,
-    url: String,
-    imagesrc: String,
+pub struct Card {
+    pub pack_code: String,
+    pub pack_name: String,
+    pub type_code: TypeCode,
+    pub type_name: TypeName,
+    pub sphere_code: SphereCode,
+    pub sphere_name: SphereName,
+    pub position: usize,
+    pub code: String,
+    pub name: String,
+    pub traits: Option<String>,
+    pub text: String,
+    pub flavor: Option<String>,
+    pub is_unique: bool,
+    pub threat: Option<usize>,
+    pub willpower: Option<usize>,
+    pub attack: Option<usize>,
+    pub defense: Option<usize>,
+    pub health: Option<usize>,
+    pub quantity: usize,
+    pub deck_limit: usize,
+    pub illustrator: String,
+    pub octgnid: String,
+    pub has_errata: bool,
+    pub url: String,
+    pub imagesrc: String,
 }
 
 #[derive(Deserialize)]
 #[allow(dead_code)]
-struct Pack {
-    name: String,
-    code: String,
-    position: usize,
-    cycle_position: usize,
-    available: String,
-    known: usize,
-    total: usize,
-    url: String,
-    id: usize,
+pub struct Pack {
+    pub name: String,
+    pub code: String,
+    pub position: usize,
+    pub cycle_position: usize,
+    pub available: String,
+    pub known: usize,
+    pub total: usize,
+    pub url: String,
+    pub id: usize,
 }
 
 const API_BASE_URL: &'static str = "https://ringsdb.com/api";
 
-struct RingsDB {
+pub struct RingsDB {
     client: reqwest::Client,
 }
 
